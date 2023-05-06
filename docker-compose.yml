@@ -20,7 +20,7 @@ services:
     volumes:
       - surreal2:/data
   rabbitmq:
-    image: docker.io/bitnami/rabbitmq:3.11
+    image: docker.io/rabbitmq:management
     ports:
       - '4369:4369'
       - '5551:5551'
@@ -28,12 +28,8 @@ services:
       - '5672:5672'
       - '25672:25672'
       - '15672:15672'
-    environment:
-      # - RABBITMQ_SECURE_PASSWORD=yes
-      - RABBITMQ_LOGS=-
-      - RABBITMQ_PASSWORD=password
-    volumes:
-      - 'rabbitmq_data:/bitnami/rabbitmq/mnesia'
+    # volumes:
+      # - 'rabbitmq_data:/bitnami/rabbitmq/mnesia'
   cache:
     image: docker.io/redis:latest
     restart: always
