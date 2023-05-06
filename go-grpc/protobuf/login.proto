@@ -1,6 +1,16 @@
 syntax = "proto3";
 
-message Login {
+service Login {
+    rpc Login (LoginRequest) returns(LoginResponse) {}
+}
+
+message LoginRequest {
     string username = 1;
     string password = 2;
+}
+
+message LoginResponse {
+    bool success = 1;
+    string message = 2;
+    string token = 3;
 }
