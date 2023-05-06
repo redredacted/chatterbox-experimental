@@ -7,7 +7,7 @@ services:
     restart: always
     command: start --user surreal --pass password file:/data/database.db
     ports:
-      - 8000:8000
+      - '8000:8000'
     volumes:
       - ./data:/data
   surrealdb2:
@@ -34,6 +34,16 @@ services:
       - RABBITMQ_PASSWORD=my_super_secure_super_secret_super_password
     volumes:
       - 'rabbitmq_data:/bitnami/rabbitmq/mnesia'
+  cache:
+    image: docker.io/redis:latest
+    restart: always
+    ports:
+      - '6379:6379'
+    command: redis-server --save 20 1 --loglevel warning --requierpass stupid_password
+    volumes:
+      - cache:/data
 volumes:
   rabbitmq_data:
+    driver: local
+  cache:
     driver: local
