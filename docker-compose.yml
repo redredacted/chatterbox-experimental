@@ -5,4 +5,35 @@ services:
     image: surrealdb/surrealdb:latest
     container_name: surealdb1
     restart: always
-    command: start --user
+    command: start --user surreal --pass password file:/data/database.db
+    ports:
+      - 8000:8000
+    volumes:
+      - ./data:/data
+  surrealdb2:
+    image: surrealdb/surrealdb:latest
+    container_name: surrealdb2
+    restart: always
+    command: start --user surreal --pass password file:/data/database.db
+    ports:
+      - 8001:8000
+    volumes:
+      - ./data:/data
+  rabbitmq:
+    image: docker.io/bitnami/rabbitmq:3.11
+    ports:
+      - '4369:4369'
+      - '5551:5551'
+      - '5552:5552'
+      - '5672:5672'
+      - '25672:25672'
+      - '15672:15672'
+    environment:
+      # - RABBITMQ_SECURE_PASSWORD=yes
+      - RABBITMQ_LOGS=-
+      - RABBITMQ_PASSWORD=my_super_secure_super_secret_super_password
+    volumes:
+      - 'rabbitmq_data:/bitnami/rabbitmq/mnesia'
+volumes:
+  rabbitmq_data:
+    driver: local
