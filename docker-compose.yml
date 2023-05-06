@@ -31,7 +31,7 @@ services:
     environment:
       # - RABBITMQ_SECURE_PASSWORD=yes
       - RABBITMQ_LOGS=-
-      - RABBITMQ_PASSWORD=my_super_secure_super_secret_super_password
+      - RABBITMQ_PASSWORD=password
     volumes:
       - 'rabbitmq_data:/bitnami/rabbitmq/mnesia'
   cache:
