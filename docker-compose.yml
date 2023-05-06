@@ -2,7 +2,7 @@ version: '3'
 
 services:
   surealdb1:
-    image: surrealdb/surrealdb:latest
+    image: docker.io/surrealdb/surrealdb:latest
     container_name: surealdb1
     restart: always
     command: start --user surreal --pass password file:/data/database.db
@@ -11,7 +11,7 @@ services:
     volumes:
       - ./data:/data
   surrealdb2:
-    image: surrealdb/surrealdb:latest
+    image: docker.io/surrealdb:latest
     container_name: surrealdb2
     restart: always
     command: start --user surreal --pass password file:/data/database.db
@@ -39,7 +39,7 @@ services:
     restart: always
     ports:
       - '6379:6379'
-    command: redis-server --save 20 1 --loglevel warning --requierpass stupid_password
+    command: redis-server --save 20 1 --loglevel warning --requirepass stupid_password
     volumes:
       - cache:/data
 volumes:

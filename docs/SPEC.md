@@ -3,6 +3,8 @@
 - Channels
     - Topics/Threads
     - Messages
+    - Collaboration Board
+    - Drag and Drop
 
 
 ## Dependencies
