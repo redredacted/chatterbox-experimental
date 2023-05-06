@@ -13,7 +13,7 @@ func main() {
 		logger.FLogFatal(err)
 	}
 
-	queueHandler.SetupQueueHandlers(conn)
+	// queueHandler.SetupQueueHandlers(conn)
 
 	logger.LogStdout().Info("Successfully connected to RabbitMQ!")
 	defer conn.Close()
