@@ -16,3 +16,4 @@
 - Redis (Caching & Content Re-Hydration)
 - Multiple SurrealDB instances (Rust["For low latency metrics, and optimizations"] & Go)
 - Open Telemetry + Grafana & Prometheus (Metrics, User Experience, Optimization)
+- Echo (Labstack) to serve OAUTH API
