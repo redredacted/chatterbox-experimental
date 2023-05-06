@@ -1,11 +1,10 @@
 package queueHandler
 
 import (
-	//"github.com/RemoteENv-Team/broker/logger"
-	//amqp "github.com/rabbitmq/amqp091-go"
+	"github.com/RemoteENv-Team/broker/logger"
+	amqp "github.com/rabbitmq/amqp091-go"
 )
 
-/*
 func SetupQueueHandlers(conn *amqp.Connection) {
 	// Queue handlers
 	ch, err := conn.Channel(); if err != nil {
@@ -47,4 +46,4 @@ func SetupQueueHandlers(conn *amqp.Connection) {
 
 	logger.LogStdout().Info("Waiting for messages. To exit press CTRL+C")
 	<-forever
-}*/
+}
