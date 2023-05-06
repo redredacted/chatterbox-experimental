@@ -4,30 +4,37 @@ import (
 	"go.uber.org/zap"
 )
 
-func LogConfig() (*zap.Logger, error) {
+func logConfig() (*zap.Logger, error) {
 	cfg := zap.NewProductionConfig()
 	cfg.OutputPaths = []string{"./log/log.txt"}
 	
 	return cfg.Build()
 }
 
-func Fatal(err error) {
-	logger, _ := LogConfig()
+func FLogFatal(err error) {
+	logger, _ := logConfig()
 	
 	defer logger.Sync()
 	logger.Fatal(err.Error())
 }
 
-func Info(msg string) {
-	logger, _ := LogConfig()
+func FLogInfo(msg string) {
+	logger, _ := logConfig()
 	defer logger.Sync()
 	
 	logger.Info(msg)
 }
 
-func Debug(msg string) {
-	logger, _ := LogConfig()
+func FLogDebug(msg string) {
+	logger, _ := logConfig()
 	defer logger.Sync()
 	
 	logger.Debug(msg)
+}
+
+func LogStdout() *zap.Logger {
+	logger, _ := zap.NewProduction()
+	defer logger.Sync()	
+	
+	return logger
 }

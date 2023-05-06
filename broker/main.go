@@ -1,8 +1,6 @@
 package main
 
 import (
-	"fmt"
-
 	"github.com/RemoteENv-Team/broker/logger"
 	amqp "github.com/rabbitmq/amqp091-go"
 )
@@ -10,11 +8,12 @@ import (
 func main() {	
 	conn, err := amqp.Dial("amqp://guest:guest@localhost:5672/")
 	if err != nil {
-		logger.Info("Failed to connect to RabbitMQ")
-		logger.Fatal(err)
+		logger.LogStdout().Fatal("Failed to connect to RabbitMQ: " + err.Error())
+		logger.FLogInfo("Failed to connect to RabbitMQ")
+		logger.FLogFatal(err)
 	}
 	
-	fmt.Println("Connected to RabbitMQ")
+	logger.LogStdout().Info("Connected to RabbitMQ")
 	
 	defer conn.Close()
 }
