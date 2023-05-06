@@ -1,7 +1,7 @@
 # Domains
 - Users
 - Channels
-    - Topics/Threads()
+    - Topics/Threads
     - Messages
 
 

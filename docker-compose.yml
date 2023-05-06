@@ -1,0 +1,8 @@
+version: '3'
+
+services:
+  surealdb1:
+    image: surrealdb/surrealdb:latest
+    container_name: surealdb1
+    restart: always
+    command: start --user
