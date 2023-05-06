@@ -11,6 +11,4 @@ impl DbAuth{
             password:  env::var("PASSWORD").expect("No Password in env filed"),
         }
     }
-
-  
 }
