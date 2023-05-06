@@ -7,10 +7,24 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Chatterbox',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
+      home: Home(),
+    );
+  }
+}
+
+class Home extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Chatterbox'),
+      ),
+      //body: Center(
+      //  child: const Text('Hello World'),
+      //),
     );
   }
 }

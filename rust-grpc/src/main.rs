@@ -1,3 +1,3 @@
 fn main() {
-    println!("Hello, world!");
+    println!("hello from rust grps-server");
 }
