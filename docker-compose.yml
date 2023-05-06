@@ -9,16 +9,16 @@ services:
     ports:
       - '8000:8000'
     volumes:
-      - ./data:/data
+      - surreal1:/data
   surrealdb2:
-    image: docker.io/surrealdb:latest
+    image: docker.io/surrealdb/surrealdb:latest
     container_name: surrealdb2
     restart: always
     command: start --user surreal --pass password file:/data/database.db
     ports:
       - 8001:8000
     volumes:
-      - ./data:/data
+      - surreal2:/data
   rabbitmq:
     image: docker.io/bitnami/rabbitmq:3.11
     ports:
@@ -46,4 +46,8 @@ volumes:
   rabbitmq_data:
     driver: local
   cache:
+    driver: local 
+  surreal1:
+     driver: local
+  surreal2:
     driver: local
