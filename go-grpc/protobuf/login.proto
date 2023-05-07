@@ -1,4 +1,5 @@
 syntax = "proto3";
+option go_package = "example.com/project/protos/fizz";
 
 service Login {
     rpc Login (LoginRequest) returns(LoginResponse) {}

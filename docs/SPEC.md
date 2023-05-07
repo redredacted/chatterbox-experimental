@@ -12,9 +12,8 @@
 - Zap Structured Logger
 - GO GRPC
 - GO OAuth
-- Rust Tonic (GRPC CLIENT)
 - Redis (Caching & Content Re-Hydration)
-- Multiple SurrealDB instances (Rust["For low latency metrics, and optimizations"] & Go)
+- Multiple SurrealDB instances (Go)
 - Open Telemetry + Grafana & Prometheus (Metrics, User Experience, Optimization)
 - Echo (Labstack) to serve OAUTH API
 - Flutter (Client)
