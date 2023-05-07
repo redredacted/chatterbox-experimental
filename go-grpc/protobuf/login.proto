@@ -1,5 +1,5 @@
 syntax = "proto3";
-option go_package = "example.com/project/protos/fizz";
+option go_package = "github.com/RemoteENv-Team/go-grps/protos";
 
 service Login {
     rpc Login (LoginRequest) returns(LoginResponse) {}
