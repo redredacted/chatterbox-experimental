@@ -11,7 +11,7 @@ import (
 )
 
 func main() {
-	lis, err := net.Listen("tcp", ":50051"); if err != nil {
+	netListen, err := net.Listen("tcp", ":50051"); if err != nil {
 		tools.LogStdout().Fatal("Failed to listen: " + err.Error())
 	}
 
@@ -19,7 +19,7 @@ func main() {
 	pb.RegisterLoginServer(s, &service.LoginService{})
 	
 	// Register reflection service on gRPC server.
-	reflection.Register(s); if err := s.Serve(lis); err != nil {
+	reflection.Register(s); if err := s.Serve(netListen); err != nil {
 		tools.LogStdout().Fatal("Failed to serve: " + err.Error())
 	}
 
