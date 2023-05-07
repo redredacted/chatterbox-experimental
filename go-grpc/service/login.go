@@ -16,8 +16,7 @@ func (s *LoginService) Login(ctx ctx.Context, req *pb.LoginRequest) (*pb.LoginRe
 		"username": req.Username,
 	})
 
-	tokenString, err := token.SignedString([]byte("secret"))
-	if err != nil {
+	tokenString, err := token.SignedString([]byte("secret")); if err != nil {
 		return &pb.LoginResponse{Message: "failed to generate token", Success: false, Token: ""}, err
 	}
 
