@@ -1,14 +1,14 @@
 package queueHandler
 
 import (
-	"github.com/RemoteENv-Team/broker/logger"
+	"github.com/RemoteENv-Team/broker/tools"
 	amqp "github.com/rabbitmq/amqp091-go"
 )
 
 func SetupQueueHandlers(conn *amqp.Connection) {
 	// Queue handlers
 	ch, err := conn.Channel(); if err != nil {
-		logger.LogStdout().Fatal("Failed to open a channel: " + err.Error())
+		tools.LogStdout().Fatal("Failed to open a channel: " + err.Error())
 	}
 
 	defer ch.Close()
@@ -21,7 +21,7 @@ func SetupQueueHandlers(conn *amqp.Connection) {
 		false,		  // no-wait
 		nil,		  // arguments
 	); if err != nil {
-		logger.LogStdout().Fatal("Failed to declare a queue: " + err.Error())
+		tools.LogStdout().Fatal("Failed to declare a queue: " + err.Error())
 	}
 
 	msgs, err := ch.Consume(
@@ -33,17 +33,17 @@ func SetupQueueHandlers(conn *amqp.Connection) {
 		false,	// no-wait
 		nil,	// args
 	); if err != nil {
-		logger.LogStdout().Fatal("Failed to register a consumer: " + err.Error())
+		tools.LogStdout().Fatal("Failed to register a consumer: " + err.Error())
 	}
 
 	var forever chan struct{}
 
 	go func() {
 		for d := range msgs {
-			logger.LogStdout().Info("Received a message: " + string(d.Body))
+			tools.LogStdout().Info("Received a message: " + string(d.Body))
 		}
 	}()
 
-	logger.LogStdout().Info("Waiting for messages. To exit press CTRL+C")
+	tools.LogStdout().Info("Waiting for messages. To exit press CTRL+C")
 	<-forever
 }
