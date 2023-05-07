@@ -20,7 +20,7 @@ type Stratosphere interface {
 	Exec(handler func(conn *surrealdb.DB) error)
 }
 
-var Stratoshpere = SetupPool(10, "ws://localhost:8000/rpc")
+var service = SetupPool(10, "ws://localhost:8000/rpc")
 
 func SetupPool(size int, connString string) ConnectionPool {
 
@@ -47,6 +47,7 @@ func (c *ConnectionPool) Exec(handler func(conn *surrealdb.DB) error) {
 		handlerErr := handler(conn)
 		if handlerErr != nil {
 			tools.FLogFatal(handlerErr)
+			tools.LogStdout().Fatal("Failed to connect to SurrealDB: " + handlerErr.Error())
 		}
 
 		c.connections = append(c.connections, conn)
@@ -58,22 +59,20 @@ func handleEmptyConnList(c *ConnectionPool, handler func(conn *surrealdb.DB) err
 
 	if err != nil {
 		tools.FLogFatal(err)
+		tools.LogStdout().Fatal("Failed to initialize connection to connection to SurrealDB service: " + err.Error())
 	}
 
-	handlerErr := handler(conn)
+	handler(conn)
 
-	if handlerErr != nil {
-		tools.FLogFatal(err)
-	}
-
-	conn.Close()
+	defer conn.Close()
 }
 
 func main() {
-	Stratoshpere.Exec(func(conn *surrealdb.DB) error {
-		_, err := conn.Create("test", "test",)
+	service.Exec(func(conn *surrealdb.DB) error {
+		_, err := conn.Create("test", "test")
 		if err != nil {
 			tools.FLogFatal(err)
+			tools.LogStdout().Fatal("Failed to create table: " + err.Error())
 		}
 
 		return nil
