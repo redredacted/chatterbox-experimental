@@ -6,7 +6,7 @@ import (
 
 func logConfig() (*zap.Logger, error) {
 	cfg := zap.NewProductionConfig()
-	cfg.OutputPaths = []string{"./broker_log.txt"}
+	cfg.OutputPaths = []string{"./log/broker_log.txt"}
 	
 	return cfg.Build()
 }

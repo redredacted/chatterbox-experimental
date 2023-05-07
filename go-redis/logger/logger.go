@@ -6,7 +6,7 @@ import (
 
 func logConfig() (*zap.Logger, error) {
 	cfg := zap.NewProductionConfig()
-	cfg.OutputPaths = []string{"./redis_log.txt"}
+	cfg.OutputPaths = []string{"./log/redis_log.txt"}
 	
 	return cfg.Build()
 }

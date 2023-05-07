@@ -6,7 +6,7 @@ import (
 
 func logConfig() (*zap.Logger, error) {
 	cfg := zap.NewProductionConfig()
-	cfg.OutputPaths = []string{"./oauth_log.txt"}
+	cfg.OutputPaths = []string{"./log/oauth_log.txt"}
 	
 	return cfg.Build()
 }

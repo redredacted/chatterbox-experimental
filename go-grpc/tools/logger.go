@@ -6,7 +6,7 @@ import (
 
 func logConfig() (*zap.Logger, error) {
 	cfg := zap.NewProductionConfig()
-	cfg.OutputPaths = []string{"./go_grpc_log.txt"}
+	cfg.OutputPaths = []string{"./log/go_grpc_log.txt"}
 	
 	return cfg.Build()
 }
