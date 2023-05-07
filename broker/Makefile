@@ -19,6 +19,7 @@ tidy:
 	go mod tidy
 
 .PHONY: run
+.PHONY: tidy
 .PHONY: compile
 .PHONY: clean
 .PHONY: sync

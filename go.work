@@ -5,4 +5,5 @@ use (
 	./go-grpc
 	./go-oauth
 	./go-redis
+	./go-surrealdb
 )

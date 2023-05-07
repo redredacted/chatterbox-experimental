@@ -1,4 +1,4 @@
-package logger
+package tools
 
 import (
 	"go.uber.org/zap"
@@ -6,7 +6,7 @@ import (
 
 func logConfig() (*zap.Logger, error) {
 	cfg := zap.NewProductionConfig()
-	cfg.OutputPaths = []string{"./go_surrealdb_log.txt"}
+	cfg.OutputPaths = []string{"./broker_log.txt"}
 	
 	return cfg.Build()
 }
