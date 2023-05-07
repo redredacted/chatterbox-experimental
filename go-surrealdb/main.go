@@ -12,7 +12,6 @@ type ConnectionPool struct {
 	connString  string
 }
 
-// Stratoshpere is an interface that defines strategies/algorithms for the ConnectionPool and Type Of.
 type Stratosphere interface {
 	// Other Database, Connections, etc. related functions
 	// Base Strategy Has been implemented in db.go
