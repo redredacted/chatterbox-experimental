@@ -12,7 +12,7 @@ type ConnectionPool struct {
 	connString  string
 }
 
-type Stratosphere interface {
+type Repository interface {
 	// Other Database, Connections, etc. related functions
 	// Base Strategy Has been implemented in db.go
 	SetUpPool(size int, connString string) ConnectionPool
@@ -43,8 +43,7 @@ func (c *ConnectionPool) Exec(handler func(conn *surrealdb.DB) error) {
 	} else {
 		conn := c.connections[len(c.connections)-1]
 
-		handlerErr := handler(conn)
-		if handlerErr != nil {
+		handlerErr := handler(conn); if handlerErr != nil {
 			tools.FLogFatal(handlerErr)
 			tools.LogStdout().Fatal("Failed to connect to SurrealDB: " + handlerErr.Error())
 		}
@@ -54,9 +53,7 @@ func (c *ConnectionPool) Exec(handler func(conn *surrealdb.DB) error) {
 }
 
 func handleEmptyConnList(c *ConnectionPool, handler func(conn *surrealdb.DB) error) {
-	conn, err := surrealdb.New(c.connString)
-
-	if err != nil {
+	conn, err := surrealdb.New(c.connString); if err != nil {
 		tools.FLogFatal(err)
 		tools.LogStdout().Fatal("Failed to initialize connection to connection to SurrealDB service: " + err.Error())
 	}
@@ -68,8 +65,7 @@ func handleEmptyConnList(c *ConnectionPool, handler func(conn *surrealdb.DB) err
 
 func main() {
 	service.Exec(func(conn *surrealdb.DB) error {
-		_, err := conn.Create("test", "test")
-		if err != nil {
+		_, err := conn.Create("test", "test"); if err != nil {
 			tools.FLogFatal(err)
 			tools.LogStdout().Fatal("Failed to create table: " + err.Error())
 		}
