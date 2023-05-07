@@ -65,7 +65,7 @@ func handleEmptyConnList(c *ConnectionPool, handler func(conn *surrealdb.DB) err
 
 func main() {
 	service.Exec(func(conn *surrealdb.DB) error {
-		_, err := conn.Create("test", "test"); if err != nil {
+		_, err := conn.Create("TODO: TABLE", ""); if err != nil {
 			tools.FLogFatal(err)
 			tools.LogStdout().Fatal("Failed to create table: " + err.Error())
 		}
